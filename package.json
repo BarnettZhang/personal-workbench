@@ -33,6 +33,10 @@
   "license": "MIT",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
-    "vue": "^3.4.27"
+    "element-plus": "^2.7.4",
+    "pinia": "^2.1.7",
+    "sass": "^1.77.4",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   }
 }
