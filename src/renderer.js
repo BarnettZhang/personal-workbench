@@ -35,11 +35,13 @@ import router from "./router";
 
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import svgIcon from "./components/svg-icon/index.vue";
 
 const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus);
+app.component("svg-icon", svgIcon);
 
 app.mount("#app");

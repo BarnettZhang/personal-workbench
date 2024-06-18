@@ -24,6 +24,7 @@
     "@electron/fuses": "^1.8.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "electron": "30.0.9",
+    "svg-sprite-loader": "^6.0.11",
     "vite": "^5.2.12"
   },
   "keywords": [],
@@ -35,6 +36,7 @@
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
     "element-plus": "^2.7.4",
+    "fs": "^0.0.1-security",
     "pinia": "^2.1.7",
     "sass": "^1.77.4",
     "vue": "^3.4.27",
