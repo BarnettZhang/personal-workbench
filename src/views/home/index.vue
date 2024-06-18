@@ -1,5 +1,6 @@
 <template>
-  <div>erwerwer</div>
+  <div></div>
+  <div></div>
 </template>
 
 <script setup></script>
