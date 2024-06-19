@@ -8,6 +8,11 @@ const router = createRouter({
       name: "home",
       component: () => import("../views/home/index.vue"),
     },
+    {
+      path: "/color-picker",
+      name: "colorPicker",
+      component: () => import("@/views/colorPicker/index.vue"),
+    },
   ],
 });
 
