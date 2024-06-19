@@ -1,18 +1,18 @@
 <template>
   <el-button @click="backToHome">Back</el-button>
-  <el-button v-if="state.hasEyeDrop" @click="nativePick">Get Color</el-button>
+  <el-button v-if="hasEyeDrop" @click="nativePick">Get Color</el-button>
   <input v-else type="color" @input="nativePick" />
   <div
-    v-if="result.hex"
+    v-if="hex"
     class="color-example-block"
-    :style="{ backgroundColor: result.hex }"
+    :style="{ backgroundColor: hex }"
   ></div>
-  <div>HEX: {{ result.hex }}</div>
-  <div>RGB: {{ result.rgb }}</div>
+  <div>HEX: {{ hex }}</div>
+  <div>RGB: {{ rgb }}</div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { hexToRgb } from "@/utils/color.js";
 import useClipboard from "vue-clipboard3";
@@ -20,14 +20,11 @@ const { toClipboard } = useClipboard();
 
 const router = useRouter();
 
-const state = reactive({
-  hasEyeDrop: "EyeDropper" in window,
-});
+const hasEyeDrop = ref("EyeDropper" in window);
 
-const result = reactive({
-  hex: "",
-  rgb: "",
-});
+const hex = ref("");
+
+const rgb = ref("");
 
 function backToHome() {
   router.push({ name: "home" });
@@ -39,16 +36,15 @@ async function nativePick(e) {
     const eyeDropper = new window.EyeDropper(); // 初始化一个EyeDropper对象
     try {
       const colorResult = await eyeDropper.open(); // 开始拾取颜色
-      result.hex = colorResult.sRGBHex;
-      result.rgb = hexToRgb(colorResult.sRGBHex);
+      hex.value = colorResult.sRGBHex;
+      rgb.value = hexToRgb(colorResult.sRGBHex);
       new window.Notification("取到颜色噜！", {
-        body: `HEX: ${result.hex}, RGB: ${result.rgb}`,
+        body: `HEX: ${hex.value}, RGB: ${rgb.value}`,
       }).onclick = () => {
-        toClipboard(result.hex);
+        toClipboard(hex.value);
       };
     } catch (e) {
       console.log(e);
-      console.log("用户取消了取色");
     }
   }
 }
