@@ -1,8 +1,10 @@
 <template>
   <div class="color-picker-content-wrapper">
     <div class="title-wrapper">
-      <svg-button icon-name="return" @click="backToHome" />
-      <div>拾色器：</div>
+      <div class="title-left">
+        <svg-button icon-name="return" @click="backToHome" />
+        <div>拾色器：</div>
+      </div>
       <el-button @click="getColorPickerValue">Get Color</el-button>
     </div>
     <div
@@ -44,9 +46,15 @@ async function getColorPickerValue(e) {
 
   .title-wrapper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
+
+    .title-left {
+      display: flex;
+      font-size: 18px;
+      gap: 5px;
+    }
   }
 
   .color-example-block {

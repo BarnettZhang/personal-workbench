@@ -38,11 +38,14 @@ import "element-plus/dist/index.css";
 import svgIcon from "./components/svg-icon/index.vue";
 import svgButton from "./components/svg-button/index.vue";
 
+import dayjs from "dayjs";
+
 const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus);
+app.config.globalProperties.$dayjs = dayjs;
 
 app.component("svg-icon", svgIcon);
 app.component("svg-button", svgButton);

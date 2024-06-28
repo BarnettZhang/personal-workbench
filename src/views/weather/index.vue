@@ -20,7 +20,7 @@
       </el-select>
     </div>
 
-    <div></div>
+    <CurrentWeatherInfo :current-weather-info="currentWeatherInfo" />
   </div>
 </template>
 
@@ -30,10 +30,13 @@ import { getCurrentWeather } from "@/api/weather.js";
 import { useRouter } from "vue-router";
 import { onMounted, ref, watch } from "vue";
 
+import CurrentWeatherInfo from "./components/current-weather-info.vue";
+
 const router = useRouter();
 
 const locationList = ref([]);
 const selectedLocation = ref("");
+const currentWeatherInfo = ref({});
 
 function backToHome() {
   router.push({ name: "home" });
@@ -48,7 +51,7 @@ function getLocation() {
 
 function getCurrentWeatherInfo() {
   getCurrentWeather({ location: selectedLocation.value }).then((res) => {
-    console.log(res);
+    currentWeatherInfo.value = res.now;
   });
 }
 
@@ -77,6 +80,8 @@ onMounted(() => {
 
     .title-left {
       display: flex;
+      font-size: 18px;
+      gap: 5px;
     }
 
     .location-select {
