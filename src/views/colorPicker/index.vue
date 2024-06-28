@@ -1,60 +1,59 @@
 <template>
-  <el-button @click="backToHome">Back</el-button>
-  <el-button v-if="hasEyeDrop" @click="nativePick">Get Color</el-button>
-  <input v-else type="color" @input="nativePick" />
-  <div
-    v-if="hex"
-    class="color-example-block"
-    :style="{ backgroundColor: hex }"
-  ></div>
-  <div>HEX: {{ hex }}</div>
-  <div>RGB: {{ rgb }}</div>
+  <div class="color-picker-content-wrapper">
+    <div class="title-wrapper">
+      <svg-button icon-name="return" @click="backToHome" />
+      <div>拾色器：</div>
+      <el-button @click="getColorPickerValue">Get Color</el-button>
+    </div>
+    <div
+      v-if="hex"
+      class="color-example-block"
+      :style="{ backgroundColor: hex }"
+    ></div>
+    <div>HEX: {{ hex }}</div>
+    <div>RGB: {{ rgb }}</div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { hexToRgb } from "@/utils/color.js";
-import useClipboard from "vue-clipboard3";
-const { toClipboard } = useClipboard();
+import { nativePick } from "@/utils/colorPicker.js";
 
 const router = useRouter();
 
-const hasEyeDrop = ref("EyeDropper" in window);
-
 const hex = ref("");
-
 const rgb = ref("");
 
 function backToHome() {
   router.push({ name: "home" });
 }
 
-async function nativePick(e) {
-  const val = e ? e.target.value : null;
-  if (!val) {
-    const eyeDropper = new window.EyeDropper(); // 初始化一个EyeDropper对象
-    try {
-      const colorResult = await eyeDropper.open(); // 开始拾取颜色
-      hex.value = colorResult.sRGBHex;
-      rgb.value = hexToRgb(colorResult.sRGBHex);
-      new window.Notification("取到颜色噜！", {
-        body: `HEX: ${hex.value}, RGB: ${rgb.value}`,
-      }).onclick = () => {
-        toClipboard(hex.value);
-      };
-    } catch (e) {
-      console.log(e);
-    }
-  }
+async function getColorPickerValue(e) {
+  const colorResult = await nativePick(window, e);
+  hex.value = colorResult[0].value;
+  rgb.value = colorResult[1].value;
 }
 </script>
 
 <style lang="scss" scoped>
-.color-example-block {
-  width: 50px;
-  height: 20px;
-  border: 1px solid #262626;
-  border-radius: 4px;
+.color-picker-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .title-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .color-example-block {
+    width: 70px;
+    height: 30px;
+    border: 1px solid #262626;
+    border-radius: 4px;
+  }
 }
 </style>

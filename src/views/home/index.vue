@@ -3,7 +3,8 @@
     v-for="func in functionMap"
     :key="func.id"
     :function="func"
-    @click="goToFunction(func)"
+    @select-function="selectFunction(func)"
+    @go-to-function="goToFunction(func)"
   />
 </template>
 
@@ -16,6 +17,10 @@ const router = useRouter();
 
 function goToFunction(func) {
   router.push({ name: func.routeName });
+}
+
+function selectFunction(func) {
+  console.log(func);
 }
 </script>
 
