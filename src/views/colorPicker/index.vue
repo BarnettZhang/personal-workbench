@@ -30,7 +30,7 @@ function backToHome() {
 }
 
 async function getColorPickerValue(e) {
-  const colorResult = await nativePick(window, e);
+  const colorResult = await nativePick(e);
   hex.value = colorResult[0].value;
   rgb.value = colorResult[1].value;
 }

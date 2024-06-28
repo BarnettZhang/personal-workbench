@@ -87,14 +87,14 @@ function mouseLeaveButton() {
     flex-direction: row;
     align-items: inherit;
     width: inherit;
-    padding-top: 10px;
+    padding-top: 5px;
 
     &:hover .enter-function-page-button {
       color: #83d6e4;
     }
     .enter-function-page-button {
       padding: auto;
-      font-size: 16px;
+      font-size: 20px;
       color: #d5d5d5;
     }
   }

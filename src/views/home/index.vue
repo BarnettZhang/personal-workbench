@@ -1,11 +1,13 @@
 <template>
-  <FunctionEntryButton
-    v-for="func in functionMap"
-    :key="func.id"
-    :function="func"
-    @select-function="selectFunction(func)"
-    @go-to-function="goToFunction(func)"
-  />
+  <div class="function-entry-button-wrapper">
+    <FunctionEntryButton
+      v-for="func in functionMap"
+      :key="func.id"
+      :function="func"
+      @select-function="selectFunction(func)"
+      @go-to-function="goToFunction(func)"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -20,8 +22,14 @@ function goToFunction(func) {
 }
 
 function selectFunction(func) {
-  console.log(func);
+  func.quickAccess();
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.function-entry-button-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+</style>

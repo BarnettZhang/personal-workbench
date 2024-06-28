@@ -1,7 +1,7 @@
 import useClipboard from "vue-clipboard3";
 import { hexToRgb } from "@/utils/color.js";
 
-export async function nativePick(window, e) {
+export async function nativePick(e) {
   const val = e ? e.target.value : null;
   if (!val) {
     const eyeDropper = new window.EyeDropper(); // 初始化一个EyeDropper对象

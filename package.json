@@ -34,10 +34,13 @@
   },
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.7.2",
     "electron-squirrel-startup": "^1.0.1",
     "element-plus": "^2.7.4",
     "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
     "pinia": "^2.1.7",
+    "qs": "^6.12.1",
     "sass": "^1.77.4",
     "vue": "^3.4.27",
     "vue-clipboard3": "^2.0.0",

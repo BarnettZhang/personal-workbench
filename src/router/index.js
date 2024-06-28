@@ -13,6 +13,11 @@ const router = createRouter({
       name: "colorPicker",
       component: () => import("@/views/colorPicker/index.vue"),
     },
+    {
+      path: "/weather",
+      name: "weather",
+      component: () => import("@/views/weather/index.vue"),
+    },
   ],
 });
 
