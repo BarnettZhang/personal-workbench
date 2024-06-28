@@ -25,6 +25,7 @@ export default defineConfig((env) => {
       pluginExposeRenderer(name),
       vue(),
       svgBuilder("./src/assets/svg-icons/icons/"),
+      svgBuilder("./src/assets/svg-icons/weather-icons/"),
     ],
     resolve: {
       preserveSymlinks: true,

@@ -14,7 +14,7 @@ export function getGeoInfo(params) {
     method: "get",
     params: {
       ...params,
-      key: key,
+      key,
     },
   });
 }

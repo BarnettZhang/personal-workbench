@@ -24,24 +24,7 @@ function createService() {
 
   service.interceptors.response.use(
     (response) => {
-      if (response.data.code === undefined) {
-        return response.data;
-      }
-
-      if (response.config.isCustomResponseParse === true) {
-        return response.data;
-      }
-
-      switch (response.data.code) {
-        case 0:
-          return response.data.data;
-        case 200:
-          return response.data.data;
-        case 401:
-          throw new Error("接口出现401错误!");
-        default:
-          throw new Error(response.data.msg);
-      }
+      return response?.data;
     },
     async (error) => {
       const status = get(error, "response.status");
