@@ -15,11 +15,7 @@
     </span>
     <div class="current-weather-into-wrapper">
       <div class="icon-box-left">
-        <svg-icon
-          class="weather-icon"
-          :icon-name="`${props.currentWeatherInfo.icon}-fill`"
-          :style="{ color: weatherColorMap(props.currentWeatherInfo) }"
-        />
+        <CustomWeatherImage :current-weather-info="props.currentWeatherInfo" />
         <div
           class="weather-desc-text"
           :style="{ color: weatherColorMap(props.currentWeatherInfo) }"
@@ -66,6 +62,7 @@
 <script setup>
 import { defineProps } from "vue";
 import { weatherColorMap } from "@/constant/weatherColorMap.js";
+import CustomWeatherImage from "./custom-weather-image.vue";
 
 const props = defineProps({
   currentWeatherInfo: {
@@ -93,12 +90,8 @@ const props = defineProps({
     align-items: center;
 
     .icon-box-left {
-      .weather-icon {
-        font-size: 40px;
-      }
-
       .weather-desc-text {
-        width: 40px;
+        width: 60px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -107,6 +100,7 @@ const props = defineProps({
     }
 
     .weather-info-desc {
+      padding-top: 12px;
       :deep(
           .el-descriptions__body
             .el-descriptions__table:not(.is-bordered)
