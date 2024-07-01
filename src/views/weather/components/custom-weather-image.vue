@@ -1,32 +1,8 @@
 <template>
   <el-image
-    v-if="props.currentWeatherInfo.text?.includes('晴')"
+    v-if="weatherImageMap(props.currentWeatherInfo.text)"
     style="width: 60px; height: 60px"
-    src="src/assets/images/sunny.png"
-    fit="fill"
-  />
-  <el-image
-    v-else-if="props.currentWeatherInfo.text?.includes('雷')"
-    style="width: 60px; height: 60px"
-    src="src/assets/images/thunder.png"
-    fit="fill"
-  />
-  <el-image
-    v-else-if="props.currentWeatherInfo.text?.includes('沙')"
-    style="width: 60px; height: 60px"
-    src="src/assets/images/wind.png"
-    fit="fill"
-  />
-  <el-image
-    v-else-if="props.currentWeatherInfo.text?.includes('雨')"
-    style="width: 60px; height: 60px"
-    src="src/assets/images/rain.png"
-    fit="fill"
-  />
-  <el-image
-    v-else-if="props.currentWeatherInfo.text?.includes('雪')"
-    style="width: 60px; height: 60px"
-    src="src/assets/images/snow.png"
+    :src="weatherImageMap(props.currentWeatherInfo.text)"
     fit="fill"
   />
   <svg-icon
@@ -38,8 +14,9 @@
 </template>
 
 <script setup>
-import { defineProps, onMounted } from "vue";
+import { defineProps } from "vue";
 import { weatherColorMap } from "@/constant/weatherColorMap.js";
+import { weatherImageMap } from "@/constant/weatherImageMap.js";
 
 const props = defineProps({
   currentWeatherInfo: {

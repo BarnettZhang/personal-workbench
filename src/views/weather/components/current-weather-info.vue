@@ -54,7 +54,6 @@
           >{{ props.currentWeatherInfo.vis }}公里</el-descriptions-item
         >
       </el-descriptions>
-      <!-- {{ props.currentWeatherInfo }} -->
     </div>
   </div>
 </template>

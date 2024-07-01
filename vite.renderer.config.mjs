@@ -40,6 +40,10 @@ export default defineConfig((env) => {
           target: "https://devapi.qweather.com",
           changeOrigin: true,
         },
+        "/v7/warning": {
+          target: "https://devapi.qweather.com",
+          changeOrigin: true,
+        },
         "/v2/city": {
           target: "https://geoapi.qweather.com",
           changeOrigin: true,

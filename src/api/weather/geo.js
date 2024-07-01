@@ -1,4 +1,4 @@
-import { request } from "./_service";
+import { request } from "../_service";
 import { key } from "@/constant/weatherAPI.js";
 
 const BASE_URL = "/v2/city";

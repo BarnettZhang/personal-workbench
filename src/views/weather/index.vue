@@ -25,8 +25,10 @@
 </template>
 
 <script setup>
-import { getGeoInfo } from "@/api/geo.js";
-import { getCurrentWeather } from "@/api/weather.js";
+import { getGeoInfo } from "@/api/weather/geo.js";
+import { getCurrentWeather } from "@/api/weather/weather.js";
+import { getCurrentWarning } from "@/api/weather/warning.js";
+
 import { useRouter } from "vue-router";
 import { onMounted, ref, watch } from "vue";
 
@@ -55,9 +57,20 @@ function getCurrentWeatherInfo() {
   });
 }
 
+function getCurrentWarningInfo() {
+  getCurrentWarning({ location: selectedLocation.value }).then((res) => {
+    console.log(res);
+  });
+}
+
+function reload() {
+  getCurrentWeatherInfo();
+  getCurrentWarningInfo();
+}
+
 watch(selectedLocation, (newVal, oldVal) => {
   if (newVal !== oldVal) {
-    getCurrentWeatherInfo();
+    reload();
   }
 });
 
