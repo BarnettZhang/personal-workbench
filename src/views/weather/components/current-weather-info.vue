@@ -18,7 +18,7 @@
         <CustomWeatherImage :current-weather-info="props.currentWeatherInfo" />
         <div
           class="weather-desc-text"
-          :style="{ color: weatherColorMap(props.currentWeatherInfo) }"
+          :style="{ color: weatherColorMapFunc(props.currentWeatherInfo) }"
         >
           {{ props.currentWeatherInfo.text }}
         </div>
@@ -60,7 +60,7 @@
 
 <script setup>
 import { defineProps } from "vue";
-import { weatherColorMap } from "@/constant/weatherColorMap.js";
+import { weatherColorMapFunc } from "@/constant/weather.js";
 import CustomWeatherImage from "./custom-weather-image.vue";
 
 const props = defineProps({

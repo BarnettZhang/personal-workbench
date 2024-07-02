@@ -1,22 +1,24 @@
 <template>
   <el-image
-    v-if="weatherImageMap(props.currentWeatherInfo.text)"
+    v-if="weatherImageMapFunc(props.currentWeatherInfo.text)"
     style="width: 60px; height: 60px"
-    :src="weatherImageMap(props.currentWeatherInfo.text)"
+    :src="weatherImageMapFunc(props.currentWeatherInfo.text)"
     fit="fill"
   />
   <svg-icon
     v-else
     class="weather-icon"
     :icon-name="`${props.currentWeatherInfo.icon}-fill`"
-    :style="{ color: weatherColorMap(props.currentWeatherInfo) }"
+    :style="{ color: weatherColorMapFunc(props.currentWeatherInfo) }"
   />
 </template>
 
 <script setup>
 import { defineProps } from "vue";
-import { weatherColorMap } from "@/constant/weatherColorMap.js";
-import { weatherImageMap } from "@/constant/weatherImageMap.js";
+import {
+  weatherColorMapFunc,
+  weatherImageMapFunc,
+} from "@/constant/weather.js";
 
 const props = defineProps({
   currentWeatherInfo: {

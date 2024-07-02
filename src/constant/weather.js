@@ -1,4 +1,16 @@
-function weatherImageMap(text) {
+export function weatherColorMapFunc(currentWeatherInfo) {
+  if (Number(currentWeatherInfo.temp) < 10) {
+    return "#3572EF";
+  }
+
+  if (Number(currentWeatherInfo.temp) > 30) {
+    return "#C80036";
+  }
+
+  return "#06D001";
+}
+
+export function weatherImageMapFunc(text) {
   if (typeof text !== "string") {
     return null;
   }
@@ -18,5 +30,3 @@ function weatherImageMap(text) {
   }
   return null;
 }
-
-export { weatherImageMap };

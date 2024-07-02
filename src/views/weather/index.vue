@@ -19,7 +19,7 @@
         />
       </el-select>
     </div>
-
+    <WeatherWarningInfo :weather-warning-info="weatherWarningInfo" />
     <CurrentWeatherInfo :current-weather-info="currentWeatherInfo" />
   </div>
 </template>
@@ -33,12 +33,14 @@ import { useRouter } from "vue-router";
 import { onMounted, ref, watch } from "vue";
 
 import CurrentWeatherInfo from "./components/current-weather-info.vue";
+import WeatherWarningInfo from "./components/weather-warning-info.vue";
 
 const router = useRouter();
 
 const locationList = ref([]);
 const selectedLocation = ref("");
 const currentWeatherInfo = ref({});
+const weatherWarningInfo = ref([]);
 
 function backToHome() {
   router.push({ name: "home" });
@@ -59,7 +61,7 @@ function getCurrentWeatherInfo() {
 
 function getCurrentWarningInfo() {
   getCurrentWarning({ location: selectedLocation.value }).then((res) => {
-    console.log(res);
+    weatherWarningInfo.value = res.warning;
   });
 }
 
