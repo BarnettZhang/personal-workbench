@@ -1,15 +1,15 @@
 <template>
   <el-image
-    v-if="weatherImageMapFunc(props.currentWeatherInfo.text)"
+    v-if="weatherImageMapFunc(currentWeatherInfo.text)"
     style="width: 60px; height: 60px"
-    :src="weatherImageMapFunc(props.currentWeatherInfo.text)"
+    :src="weatherImageMapFunc(currentWeatherInfo.text)"
     fit="fill"
   />
   <svg-icon
     v-else
     class="weather-icon"
-    :icon-name="`${props.currentWeatherInfo.icon}-fill`"
-    :style="{ color: weatherColorMapFunc(props.currentWeatherInfo) }"
+    :icon-name="`${currentWeatherInfo.icon}-fill`"
+    :style="{ color: weatherColorMapFunc(currentWeatherInfo) }"
   />
 </template>
 

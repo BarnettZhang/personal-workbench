@@ -3,7 +3,7 @@
     <span class="current-weather-info-title"
       >实时天气信息：
       <span class="update-at">
-        更新于
+        观测于
         {{
           props.currentWeatherInfo
             ? $dayjs(props.currentWeatherInfo.obsTime).format(
