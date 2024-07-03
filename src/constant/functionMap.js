@@ -1,4 +1,5 @@
 import { nativePick } from "@/utils/colorPicker";
+import { getWeather } from "@/utils/weather.js";
 
 export const functionMap = [
   {
@@ -17,6 +18,6 @@ export const functionMap = [
     iconName: "daytime-mode-fill",
     iconColor: "#EF9C66",
     routeName: "weather",
-    quickAccess: nativePick,
+    quickAccess: getWeather,
   },
 ];
