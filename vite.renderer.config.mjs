@@ -36,17 +36,27 @@ export default defineConfig((env) => {
     clearScreen: false,
     server: {
       proxy: {
-        "/v7/weather": {
+        "/api/weather": {
           target: "https://devapi.qweather.com",
           changeOrigin: true,
+          rewrite: (path) => {
+            if (/^\/api\/weather\/weather/.test(path)) {
+              return path.replace(/^\/api\/weather\/weather/, "/v7/weather");
+            } else if (/^\/api\/weather\/warning/.test(path)) {
+              return path.replace(/^\/api\/weather\/warning/, "/v7/warning");
+            }
+            return path;
+          },
         },
-        "/v7/warning": {
-          target: "https://devapi.qweather.com",
-          changeOrigin: true,
-        },
-        "/v2/city": {
+        "/api/geo": {
           target: "https://geoapi.qweather.com",
           changeOrigin: true,
+          rewrite: (path) => {
+            if (/^\/api\/geo\/city/.test(path)) {
+              return path.replace(/^\/api\/geo\/city/, "/v2/city");
+            }
+            return path;
+          },
         },
       },
     },

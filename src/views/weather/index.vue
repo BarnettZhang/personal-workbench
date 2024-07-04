@@ -28,7 +28,7 @@
 <script setup>
 import { getGeoInfo } from "@/api/weather/geo.js";
 import { getCurrentWeather, get24hWeather } from "@/api/weather/weather.js";
-import { getCurrentWarning } from "@/api/weather/warning.js";
+import { getCurrentWarning } from "@/api/weather/weather.js";
 
 import { useRouter } from "vue-router";
 import { onMounted, ref, watch } from "vue";

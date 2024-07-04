@@ -1,7 +1,7 @@
 import { request } from "../_service";
 import { key } from "@/constant/weatherAPI.js";
 
-const BASE_URL = "/v2/city";
+const BASE_URL = "/api/geo";
 
 /**
  *
@@ -10,7 +10,7 @@ const BASE_URL = "/v2/city";
  */
 export function getGeoInfo(params) {
   return request({
-    url: BASE_URL + "/lookup",
+    url: BASE_URL + "/city/lookup",
     method: "get",
     params: {
       ...params,
