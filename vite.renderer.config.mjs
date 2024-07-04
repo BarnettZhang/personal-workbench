@@ -44,6 +44,8 @@ export default defineConfig((env) => {
               return path.replace(/^\/api\/weather\/weather/, "/v7/weather");
             } else if (/^\/api\/weather\/warning/.test(path)) {
               return path.replace(/^\/api\/weather\/warning/, "/v7/warning");
+            } else if (/^\/api\/weather\/air/.test(path)) {
+              return path.replace(/^\/api\/weather\/air/, "/v7/air");
             }
             return path;
           },

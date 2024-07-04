@@ -22,12 +22,17 @@
     <WeatherWarningInfo :weather-warning-info="weatherWarningInfo" />
     <CurrentWeatherInfo :current-weather-info="currentWeatherInfo" />
     <Weather24hInfo :weather-24h-info="weather24hInfo" />
+    <AirConditionInfo :air-condition-info="airConditionInfo" />
   </div>
 </template>
 
 <script setup>
 import { getGeoInfo } from "@/api/weather/geo.js";
-import { getCurrentWeather, get24hWeather } from "@/api/weather/weather.js";
+import {
+  getCurrentWeather,
+  get24hWeather,
+  getAirCondition,
+} from "@/api/weather/weather.js";
 import { getCurrentWarning } from "@/api/weather/weather.js";
 
 import { useRouter } from "vue-router";
@@ -36,6 +41,7 @@ import { onMounted, ref, watch } from "vue";
 import CurrentWeatherInfo from "./components/current-weather-info.vue";
 import WeatherWarningInfo from "./components/weather-warning-info.vue";
 import Weather24hInfo from "./components/weather-24h-info.vue";
+import AirConditionInfo from "./components/air-condition-info.vue";
 
 const router = useRouter();
 
@@ -44,6 +50,7 @@ const selectedLocation = ref("");
 const currentWeatherInfo = ref({});
 const weatherWarningInfo = ref([]);
 const weather24hInfo = ref({});
+const airConditionInfo = ref({});
 
 function backToHome() {
   router.push({ name: "home" });
@@ -74,10 +81,17 @@ function get24hWeatherInfo() {
   });
 }
 
+function getAirConditionInfo() {
+  getAirCondition({ location: selectedLocation.value }).then((res) => {
+    airConditionInfo.value = res;
+  });
+}
+
 function reload() {
   getCurrentWeatherInfo();
   getCurrentWarningInfo();
   get24hWeatherInfo();
+  getAirConditionInfo();
 }
 
 watch(selectedLocation, (newVal, oldVal) => {

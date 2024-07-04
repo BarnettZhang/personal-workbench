@@ -41,3 +41,18 @@ export function getCurrentWarning(params) {
     },
   });
 }
+
+/**
+ *
+ * @description 获取空气质量信息
+ */
+export function getAirCondition(params) {
+  return request({
+    url: BASE_URL + "/air/now",
+    method: "get",
+    params: {
+      ...params,
+      key,
+    },
+  });
+}

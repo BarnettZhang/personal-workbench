@@ -63,7 +63,7 @@ const props = defineProps({
     align-content: flex-start;
     justify-content: space-between;
     gap: 5px;
-    margin-top: 5px;
+    margin-top: 12px;
     color: #595959;
 
     .hourly-info {
