@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import {
   weatherColorMapFunc,
   weatherImageMapFunc,

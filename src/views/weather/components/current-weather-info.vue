@@ -59,7 +59,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import { weatherColorMapFunc } from "@/constant/weather.js";
 import CustomWeatherImage from "./custom-weather-image.vue";
 
