@@ -1,7 +1,7 @@
 <template>
   <div class="air-condition-info-wrapper">
     <span class="air-condition-info-title"
-      >空气质量：
+      >空气质量信息：
       <span class="update-at">
         更新于：
         {{
@@ -13,39 +13,39 @@
     </span>
     <el-descriptions class="weather-info-desc">
       <el-descriptions-item label="发布时间">{{
-        $dayjs(airConditionInfo.now.pubTime).format("MM-DD HH:mm")
+        $dayjs(airConditionInfo.now?.pubTime).format("MM-DD HH:mm")
       }}</el-descriptions-item>
       <el-descriptions-item label="空气质量指数">{{
-        airConditionInfo.now.aqi
+        airConditionInfo.now?.aqi
       }}</el-descriptions-item>
-      <el-descriptions-item label="空气质量指数登记">{{
-        airConditionInfo.now.level
+      <el-descriptions-item label="空气质量指数等级">{{
+        airConditionInfo.now?.level
       }}</el-descriptions-item>
       <el-descriptions-item label="空气质量指数级别">{{
-        airConditionInfo.now.category
+        airConditionInfo.now?.category
       }}</el-descriptions-item>
       <el-descriptions-item label="主要污染物">{{
-        airConditionInfo.now.primary === "NA"
+        airConditionInfo.now?.primary === "NA"
           ? "无"
-          : airConditionInfo.now.primary
+          : airConditionInfo.now?.primary
       }}</el-descriptions-item>
       <el-descriptions-item label="PM10">{{
-        airConditionInfo.now.pm10
+        airConditionInfo.now?.pm10
       }}</el-descriptions-item>
       <el-descriptions-item label="PM2.5">{{
-        airConditionInfo.now.pm2p5
+        airConditionInfo.now?.pm2p5
       }}</el-descriptions-item>
       <el-descriptions-item label="二氧化氮">{{
-        airConditionInfo.now.no2
+        airConditionInfo.now?.no2
       }}</el-descriptions-item>
       <el-descriptions-item label="二氧化硫">{{
-        airConditionInfo.now.so2
+        airConditionInfo.now?.so2
       }}</el-descriptions-item>
       <el-descriptions-item label="一氧化碳">{{
-        airConditionInfo.now.co
+        airConditionInfo.now?.co
       }}</el-descriptions-item>
       <el-descriptions-item label="臭氧">{{
-        airConditionInfo.now.o3
+        airConditionInfo.now?.o3
       }}</el-descriptions-item>
     </el-descriptions>
   </div>
