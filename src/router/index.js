@@ -18,6 +18,11 @@ const router = createRouter({
       name: "weather",
       component: () => import("@/views/weather/index.vue"),
     },
+    {
+      path: "/hots",
+      name: "hots",
+      component: () => import("@/views/hots/index.vue"),
+    },
   ],
 });
 

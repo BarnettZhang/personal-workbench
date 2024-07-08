@@ -20,4 +20,13 @@ export const functionMap = [
     routeName: "weather",
     quickAccess: getWeather,
   },
+  {
+    id: 3,
+    functionKey: "hots",
+    functionName: "集锦",
+    iconName: "hots",
+    iconColor: "#4dd7f9",
+    routeName: "hots",
+    quickAccess: getWeather,
+  },
 ];
