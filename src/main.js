@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
+const fs = require("fs");
+import { HOTS_VIDEO_PATH } from "./constant/videoPath.js";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -30,6 +32,11 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  // 创建集锦文件夹
+  if (!fs.existsSync(app.getPath("userData") + HOTS_VIDEO_PATH)) {
+    fs.mkdirSync(app.getPath("userData") + HOTS_VIDEO_PATH);
+  }
 };
 
 // This method will be called when Electron has finished
@@ -45,12 +52,17 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+
+  ipcMain.handle("getUserDataPath", (event, arg) => {
+    return app.getPath("userData");
+  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
+  ipcMain.removeAllListeners();
   if (process.platform !== "darwin") {
     app.quit();
   }
