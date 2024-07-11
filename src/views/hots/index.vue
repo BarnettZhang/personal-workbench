@@ -17,8 +17,23 @@
       </el-upload>
     </div>
   </div>
-  <el-button @click="loadVideo(videoPathArray[1])">点击！</el-button>
-  <video :src="source" controls></video>
+  <el-button
+    v-for="(filePathObj, index) of videoPathArray"
+    :key="index"
+    @click="loadVideo(filePathObj.filePath)"
+    >{{ filePathObj.fileName }}</el-button
+  >
+
+  <div v-if="showVideo">
+    <div class="video-play-mapper" @click="turnOffVideo"></div>
+    <video
+      class="hots-video-play"
+      :src="source"
+      controls
+      :loop="true"
+      :autoplay="true"
+    ></video>
+  </div>
 </template>
 
 <script setup>
@@ -32,6 +47,7 @@ const path = require("node:path");
 
 const userDataPath = ref("");
 const videoPathArray = ref([]);
+const showVideo = ref(false);
 const source = ref("");
 const router = useRouter();
 
@@ -39,6 +55,7 @@ function backToHome() {
   router.push({ name: "home" });
 }
 
+// 上传集锦视频
 async function httpRequest(option) {
   const arrayBuffer = await option.file.arrayBuffer();
   const buffer = Uint8Array.from(Buffer.from(arrayBuffer));
@@ -46,8 +63,11 @@ async function httpRequest(option) {
     `${userDataPath.value}/${HOTS_VIDEO_PATH}/${option.file.name}`,
     buffer
   );
+
+  getAllHotsVideos();
 }
 
+// 获取所有集锦视频，把路径存在videoPathArray里
 function getAllHotsVideos() {
   const directoryPath = `${userDataPath.value}/${HOTS_VIDEO_PATH}/`;
 
@@ -61,16 +81,25 @@ function getAllHotsVideos() {
     // Loop through all the files
     files.forEach((file, index) => {
       const filePath = path.join(directoryPath, file);
-      videoPathArray.value.push(filePath);
+      if (filePath.endsWith(".mp4")) {
+        videoPathArray.value.push({ filePath, fileName: file });
+      }
     });
   });
 }
 
+// 根据path读取视频
 function loadVideo(filePath) {
   fs.readFile(filePath, (err, data) => {
     const dataBlob = new Blob([data]);
     source.value = URL.createObjectURL(dataBlob);
+    showVideo.value = true;
   });
+}
+
+// 关闭视频
+function turnOffVideo() {
+  showVideo.value = false;
 }
 
 onMounted(() => {
@@ -99,5 +128,29 @@ onMounted(() => {
       gap: 5px;
     }
   }
+}
+
+.hots-video-play {
+  z-index: 999;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.video-play-mapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.4;
+  z-index: 998;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 </style>
